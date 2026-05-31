@@ -32,12 +32,26 @@ npm install            # .npmrc already sets legacy-peer-deps
 npm run dev            # http://localhost:3000
 ```
 
+## Activate login (Supabase email-OTP)
+
+Passwordless email-code auth is **wired but dormant** until env vars point it at
+a Supabase project (the app runs without it, falling back to on-device identity).
+⭐ **Use the SAME Supabase project as `mlr-app`** so a person is one shared
+account across both apps — the schema lives once in
+[`mlr-app/supabase/schema.sql`](https://github.com/btheis15/mlr-app/blob/main/supabase/schema.sql)
+(run it there). Then set the same two env vars here (see
+[NEXT-STEPS.md §3](https://github.com/btheis15/mlr-app/blob/main/NEXT-STEPS.md)):
+
+- Local: `cp .env.local.example .env.local` and fill in the values.
+- CI/Pages: repo **Settings → Secrets and variables → Actions → Variables** →
+  `NEXT_PUBLIC_SUPABASE_URL` + `NEXT_PUBLIC_SUPABASE_ANON_KEY` (same as mlr-app).
+
 ## Project layout
 
 ```
 app/            App Router routes (page.tsx per tab) + layout + globals.css
-components/     TabBar, InstallHint, shared UI
-lib/            format.ts and other pure helpers
+components/     TabBar, InstallHint, IdentityProvider, shared UI
+lib/            supabase.ts (shared client), format.ts, data.ts, types.ts
 public/         manifest.webmanifest, icon.svg
 ```
 
