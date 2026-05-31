@@ -8,6 +8,7 @@ const TABS = [
   { href: "/schedule", label: "Schedule", icon: "🗓️" },
   { href: "/crew", label: "Crew", icon: "👨‍👩‍👧‍👦" },
   { href: "/photos", label: "Photos", icon: "📸" },
+  { href: "/pay", label: "Pay", icon: "💸" },
 ] as const;
 
 export function TabBar() {

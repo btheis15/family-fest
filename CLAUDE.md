@@ -27,9 +27,10 @@ without touching the pages.
 | Route | File | Status |
 |---|---|---|
 | `/` | [`app/page.tsx`](app/page.tsx) | Home — hero, live countdown, headcount, "first up", quick links |
-| `/schedule` | [`app/schedule/page.tsx`](app/schedule/page.tsx) | Full week agenda grouped by day ([`SCHEDULE`](lib/data.ts)) |
+| `/schedule` | [`app/schedule/page.tsx`](app/schedule/page.tsx) | Week agenda grouped by day ([`SCHEDULE`](lib/data.ts)) + dinner head chefs with tap-to-call/text ([`DinnerCrew`](components/DinnerCrew.tsx), [`DINNERS`](lib/data.ts)) |
 | `/crew` | [`app/crew/page.tsx`](app/crew/page.tsx) | RSVP + potluck via [`CrewView`](components/CrewView.tsx); add-your-RSVP persists to `localStorage` |
-| `/photos` | [`app/photos/page.tsx`](app/photos/page.tsx) | Shared album via [`PhotosView`](components/PhotosView.tsx); gradient seed tiles + local add-photo |
+| `/photos` | [`app/photos/page.tsx`](app/photos/page.tsx) | Shared album via [`PhotosView`](components/PhotosView.tsx); gradient seed tiles + local add-photo + share to Instagram/Facebook (Web Share API) |
+| `/pay` | [`app/pay/page.tsx`](app/pay/page.tsx) | Pay organizers via Venmo (deep link) / Zelle (copy) — [`PayView`](components/PayView.tsx), [`PAYEES`](lib/data.ts) |
 
 Bottom nav: [`components/TabBar.tsx`](components/TabBar.tsx) (the `TABS` array
 is the single source of truth for routes + labels + icons).
@@ -48,6 +49,23 @@ is the single source of truth for routes + labels + icons).
 - Client components (`TabBar`, `InstallHint`, `Countdown`, `CrewView`,
   `PhotosView`) carry `"use client"`; pages stay server components and pass seed
   data in as props.
+
+## Backend / integration seams (planned)
+
+Built UI-first; each swap point is isolated:
+
+- **Dinner chef contacts** — [`DINNERS`](lib/data.ts) is the Google-Drive seam:
+  replace with a server route that reads the Drive file → `Dinner[]`. Phones
+  stay E.164 so `tel:`/`sms:` keep working.
+- **Photo → social** — [`PhotosView`](components/PhotosView.tsx) uses the Web
+  Share API (native sheet → Instagram/Facebook), falling back to
+  `EVENT.facebookGroupUrl`. Posting *directly* into a FB group needs Meta app
+  review + the Graph API and is a later add.
+- **Pay** — [`PAYEES`](lib/data.ts) holds Venmo usernames / Zelle handles
+  (placeholders today). No credentials in the app; buttons open Venmo / copy the
+  Zelle handle so payment happens in the user's own app.
+- **Shared photo uploads** and a cross-device album need a backend (same one the
+  resort app would use).
 
 ## Keep this current
 

@@ -41,3 +41,33 @@ export interface Memory {
   gradient: string;
   emoji: string;
 }
+
+/** Whoever's running a given night's dinner. Contact is rendered as tap-to-call
+ *  / tap-to-text links that work on iOS and Android. This info will come from a
+ *  Google Drive file — see the note in lib/data.ts. */
+export interface Chef {
+  name: string;
+  /** E.164 phone, e.g. "+17155550112" — used for tel: and sms: links. */
+  phone: string;
+}
+
+/** One night's dinner and its head chef. */
+export interface Dinner {
+  id: string;
+  /** ISO date, YYYY-MM-DD. */
+  day: string;
+  title: string;
+  emoji: string;
+  chef: Chef;
+}
+
+/** Someone to pay for the fest (organizer, food lead, etc.) via Venmo/Zelle. */
+export interface Payee {
+  id: string;
+  name: string;
+  role: string;
+  /** Venmo username without the leading @, e.g. "Linda-Peterson". */
+  venmo?: string;
+  /** Zelle handle — an email or phone the recipient has registered with Zelle. */
+  zelle?: string;
+}

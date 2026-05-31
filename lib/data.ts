@@ -6,7 +6,7 @@
  * the pages.
  */
 
-import type { CrewMember, Memory, ScheduleEvent } from "./types";
+import type { CrewMember, Dinner, Memory, Payee, ScheduleEvent } from "./types";
 
 export const EVENT = {
   name: "Muskellunge Lake Resort Family Fest",
@@ -17,6 +17,8 @@ export const EVENT = {
   endDate: "2026-07-18",
   location: "Muskellunge Lake Resort",
   address: "N1234 Resort Rd, Northwoods, WI",
+  /** Shared Facebook group — used as the fallback target for photo sharing. */
+  facebookGroupUrl: "https://www.facebook.com/groups/your-family-fest-group",
 } as const;
 
 /** The weekend agenda, in chronological order. */
@@ -154,6 +156,38 @@ export const MEMORIES: Memory[] = [
   { id: "m6", caption: "Grandpa's pancakes", gradient: "from-yellow-200 to-amber-400", emoji: "🥞" },
   { id: "m7", caption: "The whole gang", gradient: "from-lime-300 to-emerald-500", emoji: "👨‍👩‍👧‍👦" },
   { id: "m8", caption: "Fireworks finale", gradient: "from-indigo-400 to-violet-600", emoji: "🎆" },
+];
+
+/**
+ * Each night's dinner and its head chef, with a phone for tap-to-call / text.
+ *
+ * GOOGLE DRIVE SEAM: this is exactly the kind of info the resort keeps in a
+ * Drive file. When that's wired up, replace this constant with a fetch from a
+ * server route that reads the Drive file (API or published CSV/JSON) and maps
+ * rows → Dinner[]. Phone numbers stay in E.164 so the tel:/sms: links keep
+ * working. Nothing in DinnerCrew (the UI) changes. Numbers below are
+ * placeholders — swap in the real ones.
+ */
+export const DINNERS: Dinner[] = [
+  { id: "d-sat", day: "2026-07-11", title: "Welcome cookout", emoji: "🌭", chef: { name: "Uncle Rob", phone: "+17155550111" } },
+  { id: "d-sun", day: "2026-07-12", title: "Pizza on the dock", emoji: "🍕", chef: { name: "Jake & Maria", phone: "+17155550112" } },
+  { id: "d-mon", day: "2026-07-13", title: "Fish fry", emoji: "🐟", chef: { name: "Grandpa", phone: "+17155550113" } },
+  { id: "d-tue", day: "2026-07-14", title: "Taco night", emoji: "🌮", chef: { name: "Aunt Linda", phone: "+17155550114" } },
+  { id: "d-wed", day: "2026-07-15", title: "Cousins' cookout (potluck)", emoji: "🍔", chef: { name: "The Petersons", phone: "+17155550115" } },
+  { id: "d-thu", day: "2026-07-16", title: "Spaghetti & talent show", emoji: "🍝", chef: { name: "Cousin Sam", phone: "+17155550116" } },
+  { id: "d-fri", day: "2026-07-17", title: "Big farewell BBQ", emoji: "🍖", chef: { name: "Uncle Rob", phone: "+17155550111" } },
+];
+
+/**
+ * People to pay for the fest, via Venmo (preferred) or Zelle. Venmo usernames
+ * and Zelle handles are placeholders — fill in the real ones (e.g. the aunt
+ * running events, and Dad). No credentials live in the app: the buttons just
+ * open Venmo (or copy the Zelle handle) so payment happens in the user's own
+ * banking / Venmo app.
+ */
+export const PAYEES: Payee[] = [
+  { id: "events-lead", name: "Aunt Linda", role: "Events & activities", venmo: "Linda-Peterson", zelle: "linda@example.com" },
+  { id: "food-lead", name: "Dad", role: "Food & supplies", venmo: "Dad-MLR", zelle: "+17155550100" },
 ];
 
 /** Days of the fest as ISO strings, derived from the event window. */
