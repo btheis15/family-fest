@@ -14,7 +14,14 @@ export default function HomePage() {
   return (
     <div className="space-y-6 pt-6">
       <header className="space-y-3 text-center">
-        <div className="text-5xl">🏰</div>
+        <div className="overflow-hidden rounded-2xl ring-1 ring-border shadow-sm">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/family-fest-2026.jpg"
+            alt="Family Fest 2026 — Renaissance / Fantasy"
+            className="block w-full"
+          />
+        </div>
         <h1 className="text-3xl font-bold tracking-tight">
           {EVENT.shortName} <span className="text-primary">2026</span>
         </h1>

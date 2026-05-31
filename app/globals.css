@@ -1,19 +1,18 @@
 @import "tailwindcss";
 
-/* ─────────────────────────────────────────────────────────────────────────
-   Family Fest 2026 — "Renaissance / Fantasy" theme. LIGHT MODE ONLY (parchment).
+/* Family Fest 2026 — "Renaissance / Fantasy" theme. LIGHT MODE ONLY (parchment).
    Heraldic palette on aged vellum: wine (gules) + azure, sepia ink, tan edges.
    Tokens drive Tailwind v4 utilities (bg-card, text-foreground, ring-border,
-   text-primary/accent, font-display). Change a color here, it flows through.
+   text-primary, text-accent, font-display). Change a color here, it flows
+   through the whole app.
 
-   ⚠️  LIGHT MODE ONLY — no dark theme / no dark variants.
-   ⚠️  TRANSPARENCY RULE (recurring issue on the author's other apps):
-       translucent layers must stack LIGHT over the parchment bg
-       (bg-card/95, bg-background/80, bg-primary/10 — white/accent over light).
-       NEVER use a dark translucent surface tint (bg-black/NN, bg-zinc-*/NN) as
-       a card/panel background — it turns muddy grey on light. (bg-black/NN is
-       OK *only* as a full-screen modal scrim.)
-   ──────────────────────────────────────────────────────────────────────── */
+   LIGHT MODE ONLY — no dark theme, no dark variants.
+   TRANSPARENCY RULE (a recurring issue on the author's other apps): translucent
+   layers must stack LIGHT over the parchment bg — use bg-card/95, bg-background/80,
+   bg-primary/10 (white or accent over light). Do NOT use a dark translucent
+   surface tint (bg-black at low opacity, or bg-zinc-800 at 50 percent) as a card
+   or panel background — it turns muddy grey on light. A dark bg-black wash is
+   fine only as a full-screen modal scrim. */
 @theme {
   --color-background: #f4ecd8; /* aged parchment */
   --color-foreground: #3a2a18; /* sepia ink */
