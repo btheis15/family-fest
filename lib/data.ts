@@ -24,6 +24,10 @@ export const EVENT = {
   facebookGroupUrl: "https://www.facebook.com/groups/your-family-fest-group",
   /** Umbrella resort app (MLR) — the "back to the resort" cross-link target. */
   resortAppUrl: "https://mlr-app-omega.vercel.app",
+  /** The parent resort. Family Fest is its flagship event, so the cross-nav
+   *  names it explicitly — the fest reads as a section of the resort, not a
+   *  separate app. */
+  resortName: "Muskellunge Lake Resort",
 } as const;
 
 /** The weekend agenda, in chronological order. */

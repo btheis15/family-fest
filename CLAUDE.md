@@ -20,6 +20,16 @@ year-round resort app (`mlr-app`) embeds a `/family-fest` hub that mirrors these
 highlights and links here — so the two read as "one app" without sharing a
 backend yet.
 
+**One-app feel via a shared "season"** — both apps share a **Family Fest season
+model** ([`lib/festSeason.ts`](lib/festSeason.ts), mirrored byte-for-byte in the
+`mlr-app` repo) so the fest reads as a *season of the resort* that rises and
+recedes through the year: a countdown in the run-up, a live "Day n of N + Today
+at the Fest" home during the event week ([`FestStatus`](components/FestStatus.tsx)
+via [`useFestSeason`](lib/useFestSeason.ts), computed client-side so it's correct
+on Pages and Vercel). The cross-nav names the parent resort (`EVENT.resortName`)
+so this reads as a section of MLR, not a separate app. The full code merge is
+still deferred to the Supabase phase (NEXT-STEPS §0b).
+
 **Data model:** there's no backend. Seed content (event window, schedule, crew,
 album) lives in [`lib/data.ts`](lib/data.ts) with types in
 [`lib/types.ts`](lib/types.ts). Anything the user adds at runtime (their RSVP,
@@ -31,7 +41,7 @@ without touching the pages.
 
 | Route | File | Status |
 |---|---|---|
-| `/` | [`app/page.tsx`](app/page.tsx) | Home — hero, live countdown, headcount, "first up", quick links |
+| `/` | [`app/page.tsx`](app/page.tsx) | Home — hero, season-aware status ([`FestStatus`](components/FestStatus.tsx): countdown → "Day n of N + today"), headcount, "first up", quick links |
 | `/schedule` | [`app/schedule/page.tsx`](app/schedule/page.tsx) | Week agenda grouped by day ([`SCHEDULE`](lib/data.ts)) + dinner head chefs with tap-to-call/text ([`DinnerCrew`](components/DinnerCrew.tsx), [`DINNERS`](lib/data.ts)) |
 | `/crew` | [`app/crew/page.tsx`](app/crew/page.tsx) | RSVP + potluck via [`CrewView`](components/CrewView.tsx); add-your-RSVP persists to `localStorage` |
 | `/photos` | [`app/photos/page.tsx`](app/photos/page.tsx) | Shared album via [`PhotosView`](components/PhotosView.tsx); gradient seed tiles + local add-photo + share to Instagram/Facebook (Web Share API) |
@@ -51,8 +61,14 @@ is the single source of truth for routes + labels + icons).
     translucent surface tint (`bg-black/NN`, `bg-zinc-*/NN`) as a card/panel bg —
     muddy grey on parchment (a recurring issue across the author's apps).
     Translucent layers stack LIGHT; `bg-black/NN` is OK only as a modal scrim.
-- **Cross-nav** — the layout renders a persistent "← Resort home" link
-  (`EVENT.resortAppUrl`) back to the MLR umbrella app, plus the theme tag.
+- **Cross-nav** — the layout renders a persistent breadcrumb back to the MLR
+  umbrella app that names it ("← Muskellunge Lake Resort", `EVENT.resortName` →
+  `EVENT.resortAppUrl`), plus the theme tag — so Family Fest reads as a section
+  of the resort.
+- **Family Fest season** — [`lib/festSeason.ts`](lib/festSeason.ts) (mirrored in
+  `mlr-app`) + the [`useFestSeason`](lib/useFestSeason.ts) client hook drive the
+  run-up/live/after behavior; consumed by [`FestStatus`](components/FestStatus.tsx).
+  Reads `EVENT.startDate` / `.endDate`.
 - **Formatting** — dates/numbers/times go through
   [`lib/format.ts`](lib/format.ts) (`formatDateLong`, `formatTime`, `daysUntil`,
   …). Add new formatters there.

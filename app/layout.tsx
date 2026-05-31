@@ -58,16 +58,18 @@ export default async function RootLayout({
             className="mx-auto w-full max-w-md px-4 pb-24 pt-2"
             style={{ paddingTop: "env(safe-area-inset-top)" }}
           >
-            {/* Cross-nav: always-present way back to the umbrella resort app,
-                plus the 2026 theme tag. */}
+            {/* Cross-nav: a breadcrumb back to the umbrella resort app that
+                names it explicitly — Family Fest reads as a section of the
+                resort, not a separate app — plus the 2026 theme tag. */}
             <div className="flex items-center justify-between gap-2 pt-2">
               <a
                 href={EVENT.resortAppUrl}
-                className="inline-flex items-center gap-1.5 rounded-full bg-card px-3 py-1.5 text-xs font-medium text-foreground/70 ring-1 ring-border transition-colors hover:text-primary"
+                className="inline-flex min-w-0 items-center gap-1.5 rounded-full bg-card px-3 py-1.5 text-xs font-medium text-foreground/70 ring-1 ring-border transition-colors hover:text-primary"
               >
-                <span aria-hidden>←</span> Resort home
+                <span aria-hidden>←</span>
+                <span className="truncate">{EVENT.resortName}</span>
               </a>
-              <span className="text-xs font-medium uppercase tracking-wide text-accent">
+              <span className="shrink-0 text-xs font-medium uppercase tracking-wide text-accent">
                 {EVENT.theme}
               </span>
             </div>
