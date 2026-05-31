@@ -2,6 +2,9 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { TabBar } from "@/components/TabBar";
 import { InstallHint } from "@/components/InstallHint";
+import { AnnouncementBanner } from "@/components/AnnouncementBanner";
+import { IdentityProvider } from "@/components/IdentityProvider";
+import { getAnnouncements } from "@/lib/announcements";
 
 export const metadata: Metadata = {
   title: "Family Fest",
@@ -28,20 +31,27 @@ export const viewport: Viewport = {
   viewportFit: "cover",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
+  const announcements = await getAnnouncements();
+
   return (
     <html lang="en" className="h-full">
       <body className="min-h-full bg-background text-foreground antialiased">
-        <InstallHint />
-        <main
-          className="mx-auto w-full max-w-md px-4 pb-24 pt-2"
-          style={{ paddingTop: "env(safe-area-inset-top)" }}
-        >
-          {children}
-        </main>
-        <TabBar />
+        <IdentityProvider>
+          <InstallHint />
+          <main
+            className="mx-auto w-full max-w-md px-4 pb-24 pt-2"
+            style={{ paddingTop: "env(safe-area-inset-top)" }}
+          >
+            <div className="pt-2">
+              <AnnouncementBanner items={announcements} />
+            </div>
+            {children}
+          </main>
+          <TabBar />
+        </IdentityProvider>
       </body>
     </html>
   );

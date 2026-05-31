@@ -1,5 +1,6 @@
-import { ComingSoon } from "@/components/ComingSoon";
+import { CrewView } from "@/components/CrewView";
+import { CREW } from "@/lib/data";
 
 export default function CrewPage() {
-  return <ComingSoon emoji="👨‍👩‍👧‍👦" title="Crew" />;
+  return <CrewView seed={CREW} />;
 }
