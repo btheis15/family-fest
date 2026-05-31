@@ -4,6 +4,8 @@ import { useEffect, useRef, useState } from "react";
 import type { Memory } from "@/lib/types";
 import { EVENT } from "@/lib/data";
 import { useIdentity } from "@/components/IdentityProvider";
+import { READ_ONLY } from "@/lib/features";
+import { ComingSoonCTA } from "@/components/ComingSoonCTA";
 
 interface AddedPhoto {
   id: string;
@@ -81,20 +83,30 @@ export function PhotosView({ seed }: { seed: Memory[] }) {
         </p>
       </header>
 
-      <button
-        onClick={() => (user ? inputRef.current?.click() : promptSignIn())}
-        className="flex w-full items-center justify-center gap-2 rounded-2xl bg-primary py-3 text-sm font-semibold text-white"
-      >
-        {user ? "📷 Add photos" : "Add your name & email to post photos"}
-      </button>
-      <input
-        ref={inputRef}
-        type="file"
-        accept="image/*"
-        multiple
-        onChange={onPick}
-        className="hidden"
-      />
+      {READ_ONLY ? (
+        <ComingSoonCTA
+          icon="📷"
+          title="Shared album is almost here"
+          note="Soon everyone can add photos to one album. For now, here's a taste of the week."
+        />
+      ) : (
+        <>
+          <button
+            onClick={() => (user ? inputRef.current?.click() : promptSignIn())}
+            className="flex w-full items-center justify-center gap-2 rounded-2xl bg-primary py-3 text-sm font-semibold text-white"
+          >
+            {user ? "📷 Add photos" : "Add your name & email to post photos"}
+          </button>
+          <input
+            ref={inputRef}
+            type="file"
+            accept="image/*"
+            multiple
+            onChange={onPick}
+            className="hidden"
+          />
+        </>
+      )}
 
       {added.length > 0 && (
         <p className="rounded-xl bg-accent/10 px-3 py-2 text-xs text-foreground/70">

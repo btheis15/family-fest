@@ -3,6 +3,8 @@
 import { useEffect, useMemo, useState } from "react";
 import type { CrewMember, RsvpStatus } from "@/lib/types";
 import { useIdentity } from "@/components/IdentityProvider";
+import { READ_ONLY } from "@/lib/features";
+import { ComingSoonCTA } from "@/components/ComingSoonCTA";
 
 const STORAGE_KEY = "family-fest-rsvps";
 
@@ -100,7 +102,13 @@ export function CrewView({ seed }: { seed: CrewMember[] }) {
         );
       })}
 
-      {user ? (
+      {READ_ONLY ? (
+        <ComingSoonCTA
+          icon="✋"
+          title="RSVP opens soon"
+          note="You'll be able to add your household and what you're bringing once sign-in is live."
+        />
+      ) : user ? (
         <AddRsvp onAdd={(member) => setAdded((prev) => [...prev, member])} />
       ) : (
         <button

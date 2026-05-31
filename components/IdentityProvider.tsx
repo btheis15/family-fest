@@ -34,17 +34,18 @@ export function useIdentity() {
  */
 export function IdentityProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
-  const [ready, setReady] = useState(false);
   const [prompting, setPrompting] = useState(false);
 
   useEffect(() => {
+    // Hydrate any on-device identity after mount. We render the app immediately
+    // (no blank gate); `user` starts null on server and first client render, so
+    // there's no hydration mismatch — it just fills in.
     try {
       const raw = localStorage.getItem(STORAGE_KEY);
       if (raw) setUser(JSON.parse(raw));
     } catch {
       /* ignore */
     }
-    setReady(true);
   }, []);
 
   const persist = (u: User) => {
@@ -62,7 +63,6 @@ export function IdentityProvider({ children }: { children: React.ReactNode }) {
     localStorage.removeItem(STORAGE_KEY);
   };
 
-  if (!ready) return null;
 
   return (
     <IdentityContext.Provider value={{ user, promptSignIn, signOut }}>

@@ -15,11 +15,11 @@ import type { Announcement } from "./types";
 
 export const ANNOUNCEMENTS: Announcement[] = [
   {
-    id: "dinner-time-change",
-    severity: "alert",
-    title: "Tonight's dinner moved to 6:00 PM",
-    body: "Dinner shifted from 5:00 to 6:00 so the fishing crew can make it back in time.",
-    ts: "2026-07-13T14:00:00Z",
+    id: "welcome",
+    severity: "info",
+    title: "Family Fest 2026 is coming 🎉",
+    body: "Save the dates: July 11–18 at the lake. Check the schedule and see who's coming — RSVP and the shared album open soon.",
+    ts: "2026-05-31T09:00:00Z",
   },
 ];
 
