@@ -6,12 +6,21 @@
 
 export type RsvpStatus = "yes" | "maybe" | "no";
 
-/** The signed-in family member. Browsing is open to all; identity (name +
- *  email) is only needed to post / RSVP / add photos. No verification yet —
- *  a one-time-code step is the planned next layer. */
+/** The signed-in family member. Browsing is open to all; identity is only
+ *  needed to post / RSVP / add photos. With Supabase wired (NEXT-STEPS.md §3)
+ *  this is hydrated from the shared `profiles` row after email-OTP — the SAME
+ *  account as the MLR app. Extra fields are optional so the pre-backend
+ *  device-only path shares the shape. */
 export interface User {
+  /** Supabase auth user id (the `profiles` primary key). Absent on the
+   *  device-only fallback path. */
+  id?: string;
   name: string;
   email: string;
+  /** Opt-in: email me when an admin pushes an alert. */
+  emailAlerts?: boolean;
+  /** Avatar from the shared profile; shown wherever the member appears. */
+  avatarUrl?: string;
 }
 
 /** A single item on the weekend agenda. */

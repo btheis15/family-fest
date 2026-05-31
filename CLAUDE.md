@@ -58,9 +58,16 @@ all readable without signing in.
 for name + email when you *act*: the RSVP form ([`CrewView`](components/CrewView.tsx))
 and Add-photos ([`PhotosView`](components/PhotosView.tsx)) call `promptSignIn()`,
 which opens a dismissible sheet. `useIdentity()` exposes
-`{ user, promptSignIn, signOut }` (`user` is `null` while browsing). Stored in
-`localStorage`, no verification yet — the one-time-code step slots in here.
+`{ user, promptSignIn, signOut }` (`user` is `null` while browsing).
 (Pay just deep-links to Venmo/Zelle, so it stays open.)
+
+**Auth is now real (passwordless email-OTP), env-gated.** When
+[`lib/supabase.ts`](lib/supabase.ts) finds `NEXT_PUBLIC_SUPABASE_URL` /
+`_ANON_KEY`, the sheet runs Supabase email-OTP (email → 6-digit code → persisted
+session) and hydrates `user` from the shared `profiles` row — the SAME account
+as `mlr-app` (one project for both; schema lives in `mlr-app/supabase/schema.sql`).
+With no env it falls back to the legacy on-device sheet, unchanged. See the
+README "Activate login" section.
 
 ## Backend / integration seams (planned)
 
