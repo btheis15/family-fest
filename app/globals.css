@@ -1,0 +1,28 @@
+@import "tailwindcss";
+
+/* ─────────────────────────────────────────────────────────────────────────
+   Family Fest theme. Warm, festive, light. Tokens are exposed to Tailwind v4
+   via @theme so utilities like bg-background / text-foreground / bg-card /
+   ring-border / text-primary / text-accent are generated automatically.
+   Change a color here and it flows through the whole app.
+   ──────────────────────────────────────────────────────────────────────── */
+@theme {
+  --color-background: #fffaf3; /* warm cream page bg */
+  --color-foreground: #2a1b12; /* warm near-black text */
+  --color-card: #ffffff; /* raised surfaces */
+  --color-border: #f0e3d4; /* hairline borders */
+  --color-primary: #e2542c; /* festive coral */
+  --color-accent: #f4a930; /* warm amber / gold */
+}
+
+html,
+body {
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family:
+    -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display",
+    "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
