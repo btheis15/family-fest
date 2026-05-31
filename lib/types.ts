@@ -77,12 +77,17 @@ export interface Dinner {
   /** The 2–3 houses (families) teaming up to cook this night, including the
    *  head chef's. */
   houses: string[];
-  /** What's on the menu. */
+  /** What's on the menu — the dishes being made. */
   menu: string;
-  /** When to gather, e.g. "6:00 PM". */
+  /** When dinner is served, e.g. "6:00 PM". */
   time: string;
-  /** Where to meet, e.g. "Lakeside Pavilion". */
+  /** Where dinner is served, e.g. "Lakeside Pavilion". */
   location: string;
+  /** When the crew meets to start prepping, e.g. "4:30 PM". (Click-through
+   *  detail — not shown on the high-level list.) */
+  prepTime: string;
+  /** Where the crew meets to prep, if different from where it's served. */
+  prepLocation?: string;
 }
 
 /** A notice shown in the banner at the top of the app (e.g. "Dinner moved from
