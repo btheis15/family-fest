@@ -42,7 +42,7 @@ export default function HomePage() {
         startDate={EVENT.startDate}
         endDate={EVENT.endDate}
         items={SCHEDULE}
-        getInvolvedHref={EVENT.facebookGroupUrl}
+        volunteerContact={EVENT.organizer}
       />
 
       <section className="grid grid-cols-2 gap-3">

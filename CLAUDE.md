@@ -26,7 +26,8 @@ model** ([`lib/festSeason.ts`](lib/festSeason.ts), mirrored byte-for-byte in the
 recedes through the year across four phases ([`FestStatus`](components/FestStatus.tsx)
 via [`useFestSeason`](lib/useFestSeason.ts), computed client-side so it's correct
 on Pages and Vercel): **off-season** (countdown) → **planning** (from ~60 days
-out: countdown + a "volunteers welcome" nudge to `EVENT.facebookGroupUrl`) →
+out: countdown + a "want to help plan?" tap-to-email/call to the
+`EVENT.organizer` contact) →
 **live** ("Day n of N + Today at the Fest") → **wrap** (2 weeks after: a "post
 the photos you didn't get to" panel linking to `/photos`). The cross-nav names
 the parent resort (`EVENT.resortName`) so this reads as a section of MLR, not a

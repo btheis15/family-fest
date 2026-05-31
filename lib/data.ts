@@ -28,6 +28,15 @@ export const EVENT = {
    *  names it explicitly — the fest reads as a section of the resort, not a
    *  separate app. */
   resortName: "Muskellunge Lake Resort",
+  /** Volunteer / planning contact, surfaced during the "planning" season so
+   *  people can reach out to help (tap-to-email / tap-to-call). A real point of
+   *  contact for now; this moves to the Committees feature once there's a
+   *  backend (NEXT-STEPS §5c). Phone is E.164 so tel:/sms: work everywhere. */
+  organizer: {
+    name: "Brian Theis",
+    email: "brian.theis15@gmail.com",
+    phone: "+12248005389",
+  },
 } as const;
 
 /** The weekend agenda, in chronological order. */
