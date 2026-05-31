@@ -40,10 +40,37 @@ export default function SchedulePage() {
                         {e.end ? `–${formatTime(e.end)}` : ""}
                       </span>
                     </div>
-                    <p className="text-xs text-foreground/50">{e.location}</p>
+                    <p className="text-xs text-foreground/50">📍 {e.location}</p>
                     <p className="mt-1 text-xs text-foreground/70">
                       {e.description}
                     </p>
+                    {e.bring && (
+                      <p className="mt-1 text-xs text-foreground/60">
+                        🎒 <span className="text-foreground/40">Bring:</span> {e.bring}
+                      </p>
+                    )}
+                    {e.lead && (
+                      <div className="mt-2 flex items-center gap-2 border-t border-border pt-2">
+                        <p className="min-w-0 flex-1 truncate text-xs text-foreground/60">
+                          <span className="text-foreground/40">In charge:</span>{" "}
+                          {e.lead.name}
+                        </p>
+                        <a
+                          href={`tel:${e.lead.phone}`}
+                          aria-label={`Call ${e.lead.name}`}
+                          className="rounded-full bg-primary/10 px-2.5 py-1.5 text-xs text-primary"
+                        >
+                          📞
+                        </a>
+                        <a
+                          href={`sms:${e.lead.phone}`}
+                          aria-label={`Text ${e.lead.name}`}
+                          className="rounded-full bg-accent/10 px-2.5 py-1.5 text-xs text-accent"
+                        >
+                          💬
+                        </a>
+                      </div>
+                    )}
                   </div>
                 </li>
               ))}

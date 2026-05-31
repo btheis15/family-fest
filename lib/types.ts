@@ -26,6 +26,11 @@ export interface ScheduleEvent {
   location: string;
   emoji: string;
   description: string;
+  /** Who's running this event — point of contact, tap-to-call/text (themed
+   *  like the dinner head chefs). */
+  lead?: Chef;
+  /** Optional "what to bring" note, e.g. "a camp chair & your stories". */
+  bring?: string;
 }
 
 /** A household coming (or not) to the fest. */

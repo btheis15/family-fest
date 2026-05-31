@@ -50,6 +50,8 @@ export const SCHEDULE: ScheduleEvent[] = [
     emoji: "🛻",
     description:
       "Roll in, grab your cabin keys at the lodge, and settle the kids. Coolers to the boathouse fridge.",
+    lead: { name: "Steward Eadric of House Larkspur", phone: "+17155550140" },
+    bring: "Your cabin confirmation & a cooler for the boathouse fridge.",
   },
   {
     id: "welcome-bonfire",
@@ -60,6 +62,8 @@ export const SCHEDULE: ScheduleEvent[] = [
     emoji: "🔥",
     description:
       "Kick off the week by the water. Marshmallows and firewood provided — bring a chair and your stories.",
+    lead: { name: "Baron Aldric of House Thornwood", phone: "+17155550127" },
+    bring: "A camp chair & your best lake stories.",
   },
   {
     id: "pancake-breakfast",
@@ -70,6 +74,8 @@ export const SCHEDULE: ScheduleEvent[] = [
     location: "Lodge deck",
     emoji: "🥞",
     description: "Grandpa's famous blueberry pancakes. Coffee's on by 7:30.",
+    lead: { name: "Master Tobias of House Fenwick", phone: "+17155550141" },
+    bring: "Just an appetite (and your favorite syrup, if you're picky).",
   },
   {
     id: "pontoon-parade",
@@ -80,6 +86,8 @@ export const SCHEDULE: ScheduleEvent[] = [
     emoji: "🛥️",
     description:
       "Deck out the pontoons and cruise the bay. Best-decorated boat wins the golden paddle.",
+    lead: { name: "Captain Rowan of House Eldermoor", phone: "+17155550142" },
+    bring: "Decorations for your boat & plenty of sunscreen.",
   },
   {
     id: "musky-tournament",
@@ -91,6 +99,8 @@ export const SCHEDULE: ScheduleEvent[] = [
     emoji: "🎣",
     description:
       "The big one. Two-person boats, catch-and-release, biggest musky takes the trophy. Early start — coffee at the dock.",
+    lead: { name: "Master Bartholomew of House Eldermoor", phone: "+17155550129" },
+    bring: "Rod, reel, a thermos — and a partner for your boat.",
   },
   {
     id: "kids-olympics",
@@ -101,6 +111,8 @@ export const SCHEDULE: ScheduleEvent[] = [
     emoji: "🏅",
     description:
       "Cannonball contest, sandcastle build-off, and the legendary tube relay.",
+    lead: { name: "Lady Wynne of House Larkspur", phone: "+17155550143" },
+    bring: "Swimsuit, towel, and a competitive spirit.",
   },
   {
     id: "cousins-cookout",
@@ -111,6 +123,8 @@ export const SCHEDULE: ScheduleEvent[] = [
     emoji: "🍔",
     description:
       "Everyone brings a dish — see the Crew tab for who's got what. Grill fired up at 5.",
+    lead: { name: "Goodwife Maren of House Hollowbrook", phone: "+17155550130" },
+    bring: "A dish to share — check the Crew board so we don't get six potato salads.",
   },
   {
     id: "talent-show",
@@ -121,6 +135,8 @@ export const SCHEDULE: ScheduleEvent[] = [
     emoji: "🎤",
     description:
       "Sign up at the lodge. Acts of all kinds welcome — the cheesier the better.",
+    lead: { name: "Bard Percival of House Wyndmere", phone: "+17155550144" },
+    bring: "An act to perform — sign up at the lodge by noon.",
   },
   {
     id: "group-photo",
@@ -130,6 +146,8 @@ export const SCHEDULE: ScheduleEvent[] = [
     location: "Lodge front steps",
     emoji: "📸",
     description: "Everyone, all of us, matching-ish shirts. Don't be late!",
+    lead: { name: "Dame Cecily of House Brightwater", phone: "+17155550128" },
+    bring: "Your matching-ish shirt — and be on the steps by 11 sharp.",
   },
   {
     id: "fireworks",
@@ -139,6 +157,8 @@ export const SCHEDULE: ScheduleEvent[] = [
     location: "Lakeside lawn",
     emoji: "🎆",
     description: "The grand finale. Blankets out, lights down, look up.",
+    lead: { name: "Sir Reginald of House Pemberlye", phone: "+17155550131" },
+    bring: "A blanket and a spot on the lawn — dinner's right before at 6.",
   },
 ];
 
