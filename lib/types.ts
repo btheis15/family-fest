@@ -6,6 +6,14 @@
 
 export type RsvpStatus = "yes" | "maybe" | "no";
 
+/** The signed-in family member. Browsing is open to all; identity (name +
+ *  email) is only needed to post / RSVP / add photos. No verification yet —
+ *  a one-time-code step is the planned next layer. */
+export interface User {
+  name: string;
+  email: string;
+}
+
 /** A single item on the weekend agenda. */
 export interface ScheduleEvent {
   id: string;

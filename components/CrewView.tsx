@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import type { CrewMember, RsvpStatus } from "@/lib/types";
+import { useIdentity } from "@/components/IdentityProvider";
 
 const STORAGE_KEY = "family-fest-rsvps";
 
@@ -17,6 +18,7 @@ const STATUS_META: Record<RsvpStatus, { label: string; emoji: string; tone: stri
  * yet). When a real API lands, swap the load/save calls.
  */
 export function CrewView({ seed }: { seed: CrewMember[] }) {
+  const { user, promptSignIn } = useIdentity();
   const [added, setAdded] = useState<CrewMember[]>([]);
   const [loaded, setLoaded] = useState(false);
 
@@ -98,7 +100,16 @@ export function CrewView({ seed }: { seed: CrewMember[] }) {
         );
       })}
 
-      <AddRsvp onAdd={(member) => setAdded((prev) => [...prev, member])} />
+      {user ? (
+        <AddRsvp onAdd={(member) => setAdded((prev) => [...prev, member])} />
+      ) : (
+        <button
+          onClick={promptSignIn}
+          className="w-full rounded-2xl bg-primary py-3 text-sm font-semibold text-white"
+        >
+          Add your name &amp; email to RSVP
+        </button>
+      )}
     </div>
   );
 }

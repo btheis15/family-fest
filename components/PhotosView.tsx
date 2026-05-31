@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import type { Memory } from "@/lib/types";
 import { EVENT } from "@/lib/data";
+import { useIdentity } from "@/components/IdentityProvider";
 
 interface AddedPhoto {
   id: string;
@@ -20,6 +21,7 @@ interface AddedPhoto {
  * drop-in later.
  */
 export function PhotosView({ seed }: { seed: Memory[] }) {
+  const { user, promptSignIn } = useIdentity();
   const [added, setAdded] = useState<AddedPhoto[]>([]);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -79,10 +81,10 @@ export function PhotosView({ seed }: { seed: Memory[] }) {
       </header>
 
       <button
-        onClick={() => inputRef.current?.click()}
+        onClick={() => (user ? inputRef.current?.click() : promptSignIn())}
         className="flex w-full items-center justify-center gap-2 rounded-2xl bg-primary py-3 text-sm font-semibold text-white"
       >
-        📷 Add photos
+        {user ? "📷 Add photos" : "Add your name & email to post photos"}
       </button>
       <input
         ref={inputRef}

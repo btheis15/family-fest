@@ -50,6 +50,18 @@ is the single source of truth for routes + labels + icons).
   `PhotosView`) carry `"use client"`; pages stay server components and pass seed
   data in as props.
 
+## Identity (on-demand, not a gate)
+
+The whole app is **public to browse** — schedule, crew/RSVP list, and photos are
+all readable without signing in.
+[`components/IdentityProvider.tsx`](components/IdentityProvider.tsx) only asks
+for name + email when you *act*: the RSVP form ([`CrewView`](components/CrewView.tsx))
+and Add-photos ([`PhotosView`](components/PhotosView.tsx)) call `promptSignIn()`,
+which opens a dismissible sheet. `useIdentity()` exposes
+`{ user, promptSignIn, signOut }` (`user` is `null` while browsing). Stored in
+`localStorage`, no verification yet — the one-time-code step slots in here.
+(Pay just deep-links to Venmo/Zelle, so it stays open.)
+
 ## Backend / integration seams (planned)
 
 Built UI-first; each swap point is isolated:
