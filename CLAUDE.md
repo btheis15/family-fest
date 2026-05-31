@@ -23,12 +23,15 @@ backend yet.
 **One-app feel via a shared "season"** — both apps share a **Family Fest season
 model** ([`lib/festSeason.ts`](lib/festSeason.ts), mirrored byte-for-byte in the
 `mlr-app` repo) so the fest reads as a *season of the resort* that rises and
-recedes through the year: a countdown in the run-up, a live "Day n of N + Today
-at the Fest" home during the event week ([`FestStatus`](components/FestStatus.tsx)
+recedes through the year across four phases ([`FestStatus`](components/FestStatus.tsx)
 via [`useFestSeason`](lib/useFestSeason.ts), computed client-side so it's correct
-on Pages and Vercel). The cross-nav names the parent resort (`EVENT.resortName`)
-so this reads as a section of MLR, not a separate app. The full code merge is
-still deferred to the Supabase phase (NEXT-STEPS §0b).
+on Pages and Vercel): **off-season** (countdown) → **planning** (from ~60 days
+out: countdown + a "volunteers welcome" nudge to `EVENT.facebookGroupUrl`) →
+**live** ("Day n of N + Today at the Fest") → **wrap** (2 weeks after: a "post
+the photos you didn't get to" panel linking to `/photos`). The cross-nav names
+the parent resort (`EVENT.resortName`) so this reads as a section of MLR, not a
+separate app. The full code merge is still deferred to the Supabase phase
+(NEXT-STEPS §0b).
 
 **Data model:** there's no backend. Seed content (event window, schedule, crew,
 album) lives in [`lib/data.ts`](lib/data.ts) with types in

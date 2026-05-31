@@ -42,6 +42,7 @@ export default function HomePage() {
         startDate={EVENT.startDate}
         endDate={EVENT.endDate}
         items={SCHEDULE}
+        getInvolvedHref={EVENT.facebookGroupUrl}
       />
 
       <section className="grid grid-cols-2 gap-3">
