@@ -59,14 +59,25 @@ export interface Chef {
   phone: string;
 }
 
-/** One night's dinner and its head chef. */
+/** One night's dinner: the head chef of the day (point of contact), the houses
+ *  on the crew, what's being made, and when/where to gather. */
 export interface Dinner {
   id: string;
   /** ISO date, YYYY-MM-DD. */
   day: string;
   title: string;
   emoji: string;
+  /** The "head chef of the day" — the point of contact, tap-to-call/text. */
   chef: Chef;
+  /** The 2–3 houses (families) teaming up to cook this night, including the
+   *  head chef's. */
+  houses: string[];
+  /** What's on the menu. */
+  menu: string;
+  /** When to gather, e.g. "6:00 PM". */
+  time: string;
+  /** Where to meet, e.g. "Lakeside Pavilion". */
+  location: string;
 }
 
 /** A notice shown in the banner at the top of the app (e.g. "Dinner moved from

@@ -174,15 +174,69 @@ export const MEMORIES: Memory[] = [
  * Drive file. When that's wired up, replace this constant with a fetch from a
  * server route that reads the Drive file (API or published CSV/JSON) and maps
  * rows → Dinner[]. Phone numbers stay in E.164 so the tel:/sms: links keep
- * working. Nothing in DinnerCrew (the UI) changes. Numbers below are
- * placeholders — swap in the real ones.
+ * working. Nothing in DinnerCrew (the UI) changes.
+ *
+ * The entries below are ILLUSTRATIVE demo content — Renaissance/Fantasy "house"
+ * names, made-up 555 phone numbers, and sample menus — to show how a fully
+ * assigned week reads (head chef of the day + the houses on crew + menu +
+ * when/where). Swap in the real families, chefs, and numbers when they're set.
  */
 export const DINNERS: Dinner[] = [
-  { id: "d-mon", day: "2026-07-27", title: "Welcome cookout", emoji: "🌭", chef: { name: "Uncle Rob", phone: "+17155550111" } },
-  { id: "d-tue", day: "2026-07-28", title: "Pizza on the dock", emoji: "🍕", chef: { name: "Jake & Maria", phone: "+17155550112" } },
-  { id: "d-wed", day: "2026-07-29", title: "Fish fry", emoji: "🐟", chef: { name: "Grandpa", phone: "+17155550113" } },
-  { id: "d-thu", day: "2026-07-30", title: "Cousins' cookout (potluck)", emoji: "🍔", chef: { name: "The Petersons", phone: "+17155550115" } },
-  { id: "d-fri", day: "2026-07-31", title: "Big farewell BBQ", emoji: "🍖", chef: { name: "Uncle Rob", phone: "+17155550111" } },
+  {
+    id: "d-mon",
+    day: "2026-07-27",
+    title: "Welcome cookout",
+    emoji: "🌭",
+    chef: { name: "Baron Aldric of House Thornwood", phone: "+17155550127" },
+    houses: ["House Thornwood", "The Ravenshire Clan", "House Larkspur"],
+    menu: "Flame-grilled brats & burgers, fire-roasted corn, and the Baron's famous potato salad.",
+    time: "6:00 PM",
+    location: "Lakeside Pavilion",
+  },
+  {
+    id: "d-tue",
+    day: "2026-07-28",
+    title: "Pizza on the dock",
+    emoji: "🍕",
+    chef: { name: "Dame Cecily of House Brightwater", phone: "+17155550128" },
+    houses: ["House Brightwater", "The Wyndmere Troupe"],
+    menu: "Wood-fired hand pies & flatbreads, a garden-greens salad, and lemon ices for the squires.",
+    time: "6:30 PM",
+    location: "Main Dock",
+  },
+  {
+    id: "d-wed",
+    day: "2026-07-29",
+    title: "Fish fry",
+    emoji: "🐟",
+    chef: { name: "Master Bartholomew of House Eldermoor", phone: "+17155550129" },
+    houses: ["House Eldermoor", "The Ashforge Family", "House Fenwick"],
+    menu: "Beer-battered walleye from the day's catch, hush puppies, and slaw of the realm.",
+    time: "5:30 PM",
+    location: "Boathouse",
+  },
+  {
+    id: "d-thu",
+    day: "2026-07-30",
+    title: "Cousins' cookout (potluck)",
+    emoji: "🍔",
+    chef: { name: "Goodwife Maren of House Hollowbrook", phone: "+17155550130" },
+    houses: ["House Hollowbrook", "The Stagleigh Kin", "House Marrowin"],
+    menu: "A grand potluck — every house brings a dish (see the Crew board). Grill lit at 5.",
+    time: "5:30 PM",
+    location: "Pavilion",
+  },
+  {
+    id: "d-fri",
+    day: "2026-07-31",
+    title: "Big farewell BBQ",
+    emoji: "🍖",
+    chef: { name: "Sir Reginald of House Pemberlye", phone: "+17155550131" },
+    houses: ["House Pemberlye", "The Brightwater Family", "House Thornwood"],
+    menu: "A smoked farewell feast — slow brisket, herbed chicken, honeyed beans, and berry cobbler before the fireworks.",
+    time: "6:00 PM",
+    location: "Lakeside Pavilion",
+  },
 ];
 
 /**
