@@ -24,20 +24,21 @@ export function PhotosView({ seed }: { seed: Memory[] }) {
   const { user, promptSignIn } = useIdentity();
   const [added, setAdded] = useState<AddedPhoto[]>([]);
   const inputRef = useRef<HTMLInputElement>(null);
+  // Track every object URL we create so we can revoke them once — on unmount.
+  // (Revoking on each `added` change would kill URLs still shown on screen.)
+  const createdUrls = useRef<string[]>([]);
 
-  // Revoke object URLs on unmount to avoid leaking memory.
   useEffect(() => {
-    return () => added.forEach((p) => URL.revokeObjectURL(p.url));
-  }, [added]);
+    return () => createdUrls.current.forEach((url) => URL.revokeObjectURL(url));
+  }, []);
 
   const onPick = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = Array.from(e.target.files ?? []);
-    const next = files.map((file) => ({
-      id: `local-${Date.now()}-${file.name}`,
-      url: URL.createObjectURL(file),
-      caption: "Just added",
-      file,
-    }));
+    const next = files.map((file) => {
+      const url = URL.createObjectURL(file);
+      createdUrls.current.push(url);
+      return { id: `local-${Date.now()}-${file.name}`, url, caption: "Just added", file };
+    });
     setAdded((prev) => [...next, ...prev]);
     e.target.value = "";
   };
