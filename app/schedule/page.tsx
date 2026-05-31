@@ -1,5 +1,4 @@
-import { DinnerCrew } from "@/components/DinnerCrew";
-import { DINNERS, SCHEDULE, eventDays } from "@/lib/data";
+import { SCHEDULE, eventDays } from "@/lib/data";
 import { formatDateLong, formatTime } from "@/lib/format";
 
 export default function SchedulePage() {
@@ -13,8 +12,6 @@ export default function SchedulePage() {
         <h1 className="text-2xl font-bold tracking-tight">Schedule</h1>
         <p className="text-sm text-foreground/60">The whole week, day by day.</p>
       </header>
-
-      <DinnerCrew dinners={DINNERS} />
 
       {days.map((day) => {
         const events = SCHEDULE.filter((e) => e.day === day).sort((a, b) =>

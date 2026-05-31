@@ -45,8 +45,9 @@ without touching the pages.
 
 | Route | File | Status |
 |---|---|---|
-| `/` | [`app/page.tsx`](app/page.tsx) | Home — hero, season-aware status ([`FestStatus`](components/FestStatus.tsx): countdown → "Day n of N + today"), headcount, "first up", quick links |
-| `/schedule` | [`app/schedule/page.tsx`](app/schedule/page.tsx) | Week agenda grouped by day ([`SCHEDULE`](lib/data.ts)) — each event has time, location, a `lead` (who's in charge, tap-to-call/text) + a `bring` note — plus dinners ([`DinnerCrew`](components/DinnerCrew.tsx), [`DINNERS`](lib/data.ts)): each night a head chef of the day + the `houses` on crew + menu + when/where |
+| `/` | [`app/page.tsx`](app/page.tsx) | Home — **kept lean**: hero, season-aware status ([`FestStatus`](components/FestStatus.tsx): countdown → "Day n of N + today"), and a single "Next up" card. Everything else lives on the tabs so the front never feels overwhelming |
+| `/schedule` | [`app/schedule/page.tsx`](app/schedule/page.tsx) | Week agenda grouped by day ([`SCHEDULE`](lib/data.ts)) — each event has time, location, a `lead` (who's in charge, tap-to-call/text) + a `bring` note |
+| `/dinners` | [`app/dinners/page.tsx`](app/dinners/page.tsx) | Dinner agenda ([`DinnerCrew`](components/DinnerCrew.tsx), [`DINNERS`](lib/data.ts)): each night a head chef of the day (tap-to-call/text) + the `houses` on crew + menu + when/where |
 | `/crew` | [`app/crew/page.tsx`](app/crew/page.tsx) | RSVP + potluck via [`CrewView`](components/CrewView.tsx); add-your-RSVP persists to `localStorage` |
 | `/photos` | [`app/photos/page.tsx`](app/photos/page.tsx) | Shared album via [`PhotosView`](components/PhotosView.tsx); gradient seed tiles + local add-photo + share to Instagram/Facebook (Web Share API) |
 | `/pay` | [`app/pay/page.tsx`](app/pay/page.tsx) | Pay organizers via Venmo (deep link) / Zelle (copy) — [`PayView`](components/PayView.tsx), [`PAYEES`](lib/data.ts) |

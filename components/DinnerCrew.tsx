@@ -6,14 +6,11 @@ import { formatDate } from "@/lib/format";
  * day," with the menu, when/where to gather, and tap-to-call / tap-to-text
  * buttons for the chef. `tel:` and `sms:` links work on iPhone and Android —
  * the phone opens its dialer / messaging app with the chef's number filled in.
+ * Title/intro live on the Dinners page (app/dinners/page.tsx); this renders the
+ * list of nights.
  */
 export function DinnerCrew({ dinners }: { dinners: Dinner[] }) {
   return (
-    <section className="space-y-2">
-      <h2 className="text-sm font-semibold text-primary">Dinners & head chefs</h2>
-      <p className="text-xs text-foreground/50">
-        Each night a few houses team up. Tap to call or text the head chef of the day.
-      </p>
       <ul className="space-y-2">
         {dinners.map((d) => (
           <li key={d.id} className="rounded-2xl bg-card p-3 ring-1 ring-border">
@@ -68,6 +65,5 @@ export function DinnerCrew({ dinners }: { dinners: Dinner[] }) {
           </li>
         ))}
       </ul>
-    </section>
   );
 }
