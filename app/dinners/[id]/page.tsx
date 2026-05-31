@@ -1,0 +1,114 @@
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import { DINNERS } from "@/lib/data";
+import { formatDateLong } from "@/lib/format";
+
+// Static export (GitHub Pages) needs every dynamic route enumerated up front.
+export function generateStaticParams() {
+  return DINNERS.map((d) => ({ id: d.id }));
+}
+
+export default async function DinnerDetailPage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = await params;
+  const dinner = DINNERS.find((d) => d.id === id);
+  if (!dinner) notFound();
+
+  return (
+    <div className="space-y-5 pt-6">
+      <Link href="/dinners" className="inline-block text-xs font-medium text-foreground/60">
+        ← All dinners
+      </Link>
+
+      <header className="space-y-1">
+        <p className="text-xs text-foreground/50">{formatDateLong(dinner.day)}</p>
+        <h1 className="text-2xl font-bold tracking-tight">
+          <span className="mr-1">{dinner.emoji}</span>
+          {dinner.title}
+        </h1>
+      </header>
+
+      {/* What's being made */}
+      <section className="rounded-2xl bg-card p-4 ring-1 ring-border">
+        <h2 className="text-xs font-semibold uppercase tracking-wide text-accent">
+          On the menu
+        </h2>
+        <p className="mt-1 text-sm leading-relaxed text-foreground/80">{dinner.menu}</p>
+      </section>
+
+      {/* When & where — serve + prep (the click-through detail) */}
+      <section className="grid grid-cols-2 gap-3">
+        <DetailTile label="Served" value={dinner.time} sub={dinner.location} emoji="🍽️" />
+        <DetailTile
+          label="Crew preps"
+          value={dinner.prepTime}
+          sub={dinner.prepLocation ?? dinner.location}
+          emoji="⏱️"
+        />
+      </section>
+
+      {/* Houses on the crew */}
+      <section className="space-y-2">
+        <h2 className="text-xs font-semibold uppercase tracking-wide text-accent">
+          Houses on crew
+        </h2>
+        <div className="flex flex-wrap gap-1.5">
+          {dinner.houses.map((house) => (
+            <span
+              key={house}
+              className="rounded-full bg-accent/10 px-2.5 py-1 text-xs font-medium text-accent"
+            >
+              {house}
+            </span>
+          ))}
+        </div>
+      </section>
+
+      {/* Head chef of the day — contact */}
+      <section className="rounded-2xl bg-card p-4 ring-1 ring-border">
+        <p className="text-[11px] uppercase tracking-wide text-foreground/40">
+          Head chef of the day
+        </p>
+        <p className="mt-0.5 text-sm font-semibold">{dinner.chef.name}</p>
+        <div className="mt-3 grid grid-cols-2 gap-2">
+          <a
+            href={`tel:${dinner.chef.phone}`}
+            className="rounded-xl bg-primary/10 py-2.5 text-center text-sm font-semibold text-primary"
+          >
+            📞 Call
+          </a>
+          <a
+            href={`sms:${dinner.chef.phone}`}
+            className="rounded-xl bg-accent/10 py-2.5 text-center text-sm font-semibold text-accent"
+          >
+            💬 Text
+          </a>
+        </div>
+      </section>
+    </div>
+  );
+}
+
+function DetailTile({
+  label,
+  value,
+  sub,
+  emoji,
+}: {
+  label: string;
+  value: string;
+  sub: string;
+  emoji: string;
+}) {
+  return (
+    <div className="rounded-2xl bg-card p-4 ring-1 ring-border">
+      <div className="text-xl">{emoji}</div>
+      <p className="mt-1 text-[11px] uppercase tracking-wide text-foreground/40">{label}</p>
+      <p className="text-sm font-bold text-primary">{value}</p>
+      <p className="text-xs text-foreground/60">{sub}</p>
+    </div>
+  );
+}

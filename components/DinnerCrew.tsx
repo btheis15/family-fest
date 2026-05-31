@@ -1,23 +1,22 @@
+import Link from "next/link";
 import type { Dinner } from "@/lib/types";
 import { formatDate } from "@/lib/format";
 
 /**
- * The week's dinners and their head chefs, each with tap-to-call / tap-to-text
- * buttons. `tel:` and `sms:` links work on both iPhone and Android — the phone
- * opens its dialer / messaging app with the chef's number filled in.
+ * High-level list of the week's dinners — what each night's meal is and who's
+ * the head chef in charge (the bits everyone cares about). The details that
+ * only the crew needs — when/where to meet, prep time, the houses helping, and
+ * the chef's call/text — live on the click-through detail page
+ * (app/dinners/[id]/page.tsx).
  */
 export function DinnerCrew({ dinners }: { dinners: Dinner[] }) {
   return (
-    <section className="space-y-2">
-      <h2 className="text-sm font-semibold text-primary">Dinners & head chefs</h2>
-      <p className="text-xs text-foreground/50">
-        Tap to call or text the chef running each night.
-      </p>
-      <ul className="space-y-2">
-        {dinners.map((d) => (
-          <li
-            key={d.id}
-            className="flex items-center gap-3 rounded-2xl bg-card p-3 ring-1 ring-border"
+    <ul className="space-y-2">
+      {dinners.map((d) => (
+        <li key={d.id}>
+          <Link
+            href={`/dinners/${d.id}`}
+            className="flex items-center gap-3 rounded-2xl bg-card p-3 ring-1 ring-border transition-shadow hover:shadow-sm"
           >
             <span className="text-2xl">{d.emoji}</span>
             <div className="min-w-0 flex-1">
@@ -27,25 +26,10 @@ export function DinnerCrew({ dinners }: { dinners: Dinner[] }) {
                 Head chef: {d.chef.name}
               </p>
             </div>
-            <div className="flex shrink-0 gap-1.5">
-              <a
-                href={`tel:${d.chef.phone}`}
-                aria-label={`Call ${d.chef.name}`}
-                className="rounded-full bg-primary/10 px-3 py-2 text-sm text-primary"
-              >
-                📞
-              </a>
-              <a
-                href={`sms:${d.chef.phone}`}
-                aria-label={`Text ${d.chef.name}`}
-                className="rounded-full bg-accent/10 px-3 py-2 text-sm text-accent"
-              >
-                💬
-              </a>
-            </div>
-          </li>
-        ))}
-      </ul>
-    </section>
+            <span className="shrink-0 text-foreground/30">›</span>
+          </Link>
+        </li>
+      ))}
+    </ul>
   );
 }

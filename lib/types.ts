@@ -26,6 +26,11 @@ export interface ScheduleEvent {
   location: string;
   emoji: string;
   description: string;
+  /** Who's running this event — point of contact, tap-to-call/text (themed
+   *  like the dinner head chefs). */
+  lead?: Chef;
+  /** Optional "what to bring" note, e.g. "a camp chair & your stories". */
+  bring?: string;
 }
 
 /** A household coming (or not) to the fest. */
@@ -59,14 +64,30 @@ export interface Chef {
   phone: string;
 }
 
-/** One night's dinner and its head chef. */
+/** One night's dinner: the head chef of the day (point of contact), the houses
+ *  on the crew, what's being made, and when/where to gather. */
 export interface Dinner {
   id: string;
   /** ISO date, YYYY-MM-DD. */
   day: string;
   title: string;
   emoji: string;
+  /** The "head chef of the day" — the point of contact, tap-to-call/text. */
   chef: Chef;
+  /** The 2–3 houses (families) teaming up to cook this night, including the
+   *  head chef's. */
+  houses: string[];
+  /** What's on the menu — the dishes being made. */
+  menu: string;
+  /** When dinner is served, e.g. "6:00 PM". */
+  time: string;
+  /** Where dinner is served, e.g. "Lakeside Pavilion". */
+  location: string;
+  /** When the crew meets to start prepping, e.g. "4:30 PM". (Click-through
+   *  detail — not shown on the high-level list.) */
+  prepTime: string;
+  /** Where the crew meets to prep, if different from where it's served. */
+  prepLocation?: string;
 }
 
 /** A notice shown in the banner at the top of the app (e.g. "Dinner moved from

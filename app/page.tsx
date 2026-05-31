@@ -1,15 +1,19 @@
 import Link from "next/link";
 import { FestStatus } from "@/components/FestStatus";
-import { CREW, EVENT, SCHEDULE } from "@/lib/data";
+import { EVENT, SCHEDULE } from "@/lib/data";
 import { formatDateLong, formatTime } from "@/lib/format";
 
+/**
+ * Home is intentionally lean — just the headline: where we are in the season
+ * (FestStatus + the announcement banner in the layout) and what's next. Detail
+ * lives on the tabs (Schedule, Dinners, Crew, Photos, Pay), so the front page
+ * never feels overwhelming.
+ */
 export default function HomePage() {
-  const goingHeadcount = CREW.filter((c) => c.status === "yes").reduce(
-    (sum, c) => sum + c.headcount,
-    0,
-  );
-  const householdsIn = CREW.filter((c) => c.status === "yes").length;
   const nextEvent = SCHEDULE[0];
+  const maps = `https://maps.google.com/?q=${encodeURIComponent(
+    `${EVENT.location} ${EVENT.address}`,
+  )}`;
 
   return (
     <div className="space-y-6 pt-6">
@@ -31,11 +35,17 @@ export default function HomePage() {
           </span>
           <span className="text-[11px] text-foreground/50">{EVENT.themeNote}</span>
         </div>
-        <p className="text-sm text-foreground/70">{EVENT.tagline}</p>
         <p className="text-xs text-foreground/50">
-          {EVENT.location} · {formatDateLong(EVENT.startDate)} –{" "}
-          {formatDateLong(EVENT.endDate)}
+          {formatDateLong(EVENT.startDate)} – {formatDateLong(EVENT.endDate)}
         </p>
+        <a
+          href={maps}
+          target="_blank"
+          rel="noreferrer"
+          className="inline-block text-xs font-medium text-accent"
+        >
+          📍 {EVENT.location} · Get directions
+        </a>
       </header>
 
       <FestStatus
@@ -45,19 +55,14 @@ export default function HomePage() {
         volunteerContact={EVENT.organizer}
       />
 
-      <section className="grid grid-cols-2 gap-3">
-        <Stat value={`${goingHeadcount}`} label="people coming" emoji="🙌" />
-        <Stat value={`${householdsIn}`} label="households in" emoji="🏡" />
-      </section>
-
       <Link
         href="/schedule"
         className="block rounded-2xl bg-card p-4 ring-1 ring-border"
       >
-        <h2 className="text-sm font-semibold text-primary">First up</h2>
+        <h2 className="text-sm font-semibold text-primary">Next up</h2>
         <div className="mt-1 flex items-center gap-3">
           <span className="text-2xl">{nextEvent.emoji}</span>
-          <div>
+          <div className="min-w-0">
             <p className="text-sm font-semibold">{nextEvent.title}</p>
             <p className="text-xs text-foreground/60">
               {formatDateLong(nextEvent.day)} · {formatTime(nextEvent.start)} ·{" "}
@@ -65,62 +70,8 @@ export default function HomePage() {
             </p>
           </div>
         </div>
+        <p className="mt-2 text-xs font-medium text-primary">See the full week →</p>
       </Link>
-
-      <section className="grid grid-cols-2 gap-3">
-        <NavCard href="/schedule" emoji="🗓️" title="Schedule" body="The whole week at a glance." />
-        <NavCard href="/crew" emoji="👨‍👩‍👧‍👦" title="Crew" body="Who's coming & who's bringing what." />
-        <NavCard href="/photos" emoji="📸" title="Photos" body="One shared album for everyone." />
-        <Where />
-      </section>
     </div>
-  );
-}
-
-function Stat({ value, label, emoji }: { value: string; label: string; emoji: string }) {
-  return (
-    <div className="rounded-2xl bg-card p-4 ring-1 ring-border">
-      <div className="text-2xl">{emoji}</div>
-      <div className="mt-1 text-2xl font-bold text-primary">{value}</div>
-      <div className="text-xs text-foreground/60">{label}</div>
-    </div>
-  );
-}
-
-function NavCard({
-  href,
-  emoji,
-  title,
-  body,
-}: {
-  href: string;
-  emoji: string;
-  title: string;
-  body: string;
-}) {
-  return (
-    <Link href={href} className="rounded-2xl bg-card p-4 ring-1 ring-border">
-      <div className="text-2xl">{emoji}</div>
-      <h3 className="mt-2 text-sm font-semibold">{title}</h3>
-      <p className="mt-0.5 text-xs text-foreground/60">{body}</p>
-    </Link>
-  );
-}
-
-function Where() {
-  const maps = `https://maps.google.com/?q=${encodeURIComponent(
-    `${EVENT.location} ${EVENT.address}`,
-  )}`;
-  return (
-    <a
-      href={maps}
-      target="_blank"
-      rel="noreferrer"
-      className="rounded-2xl bg-card p-4 ring-1 ring-border"
-    >
-      <div className="text-2xl">📍</div>
-      <h3 className="mt-2 text-sm font-semibold">Where</h3>
-      <p className="mt-0.5 text-xs text-foreground/60">{EVENT.address}</p>
-    </a>
   );
 }
