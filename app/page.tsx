@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Countdown } from "@/components/Countdown";
+import { FestStatus } from "@/components/FestStatus";
 import { CREW, EVENT, SCHEDULE } from "@/lib/data";
 import { formatDateLong, formatTime } from "@/lib/format";
 
@@ -38,7 +38,12 @@ export default function HomePage() {
         </p>
       </header>
 
-      <Countdown target={EVENT.startDate} />
+      <FestStatus
+        startDate={EVENT.startDate}
+        endDate={EVENT.endDate}
+        items={SCHEDULE}
+        volunteerContact={EVENT.organizer}
+      />
 
       <section className="grid grid-cols-2 gap-3">
         <Stat value={`${goingHeadcount}`} label="people coming" emoji="🙌" />
