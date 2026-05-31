@@ -39,6 +39,19 @@ export function formatTime(hhmm: string): string {
   return d.toLocaleTimeString(undefined, { hour: "numeric", minute: "2-digit" });
 }
 
+/** "just now", "5m", "3h", "2d" — compact relative time for announcements. */
+export function timeAgo(input: string | number | Date): string {
+  const then = input instanceof Date ? input.getTime() : new Date(input).getTime();
+  const secs = Math.max(0, Math.round((Date.now() - then) / 1000));
+  if (secs < 60) return "just now";
+  const mins = Math.round(secs / 60);
+  if (mins < 60) return `${mins}m`;
+  const hrs = Math.round(mins / 60);
+  if (hrs < 24) return `${hrs}h`;
+  const days = Math.round(hrs / 24);
+  return `${days}d`;
+}
+
 /** "3 days", "1 day", "today" — relative day count from now. */
 export function daysUntil(input: string | number | Date): string {
   const target = input instanceof Date ? input : new Date(input);

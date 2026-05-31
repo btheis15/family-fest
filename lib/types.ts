@@ -61,6 +61,18 @@ export interface Dinner {
   chef: Chef;
 }
 
+/** A notice shown in the banner at the top of the app (e.g. "Dinner moved from
+ *  5 to 6"). Seeded today; the intent is a Google-Drive-fed source — see
+ *  lib/announcements.ts. */
+export interface Announcement {
+  id: string;
+  severity: "info" | "alert";
+  title: string;
+  body?: string;
+  /** ISO timestamp. */
+  ts: string;
+}
+
 /** Someone to pay for the fest (organizer, food lead, etc.) via Venmo/Zelle. */
 export interface Payee {
   id: string;

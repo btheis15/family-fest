@@ -54,6 +54,10 @@ is the single source of truth for routes + labels + icons).
 
 Built UI-first; each swap point is isolated:
 
+- **Announcement banner** — [`AnnouncementBanner`](components/AnnouncementBanner.tsx)
+  shows event-change notices at the top of every page (e.g. "Dinner moved 5→6"),
+  fed by [`getAnnouncements()`](lib/announcements.ts) — the same Google-Drive
+  seam. Read-only here; in the umbrella `mlr-app`, admins push these in-app.
 - **Dinner chef contacts** — [`DINNERS`](lib/data.ts) is the Google-Drive seam:
   replace with a server route that reads the Drive file → `Dinner[]`. Phones
   stay E.164 so `tel:`/`sms:` keep working.
