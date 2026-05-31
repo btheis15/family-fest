@@ -15,9 +15,9 @@ export const EVENT = {
   /** 2026 theme (from the poster). The official title is still TBD. */
   theme: "Renaissance · Fantasy",
   themeNote: "Official title coming soon",
-  /** Saturday → Saturday, one week. */
-  startDate: "2026-07-11",
-  endDate: "2026-07-18",
+  /** Monday → Friday. */
+  startDate: "2026-07-27",
+  endDate: "2026-07-31",
   location: "Muskellunge Lake Resort",
   address: "N1234 Resort Rd, Northwoods, WI",
   /** Shared Facebook group — used as the fallback target for photo sharing. */
@@ -43,7 +43,7 @@ export const EVENT = {
 export const SCHEDULE: ScheduleEvent[] = [
   {
     id: "arrival",
-    day: "2026-07-11",
+    day: "2026-07-27",
     start: "15:00",
     title: "Arrival & check-in",
     location: "Main Lodge",
@@ -53,7 +53,7 @@ export const SCHEDULE: ScheduleEvent[] = [
   },
   {
     id: "welcome-bonfire",
-    day: "2026-07-11",
+    day: "2026-07-27",
     start: "19:30",
     title: "Welcome bonfire & s'mores",
     location: "Lakeside fire pit",
@@ -63,7 +63,7 @@ export const SCHEDULE: ScheduleEvent[] = [
   },
   {
     id: "pancake-breakfast",
-    day: "2026-07-12",
+    day: "2026-07-28",
     start: "08:00",
     end: "10:00",
     title: "Pancake breakfast",
@@ -73,7 +73,7 @@ export const SCHEDULE: ScheduleEvent[] = [
   },
   {
     id: "pontoon-parade",
-    day: "2026-07-12",
+    day: "2026-07-28",
     start: "13:00",
     title: "Pontoon parade",
     location: "Main dock",
@@ -83,7 +83,7 @@ export const SCHEDULE: ScheduleEvent[] = [
   },
   {
     id: "musky-tournament",
-    day: "2026-07-13",
+    day: "2026-07-29",
     start: "06:00",
     end: "12:00",
     title: "Musky fishing tournament",
@@ -94,7 +94,7 @@ export const SCHEDULE: ScheduleEvent[] = [
   },
   {
     id: "kids-olympics",
-    day: "2026-07-14",
+    day: "2026-07-29",
     start: "10:00",
     title: "Kids' lake olympics",
     location: "Swim beach",
@@ -104,7 +104,7 @@ export const SCHEDULE: ScheduleEvent[] = [
   },
   {
     id: "cousins-cookout",
-    day: "2026-07-15",
+    day: "2026-07-30",
     start: "17:30",
     title: "Cousins' cookout (potluck)",
     location: "Pavilion",
@@ -114,7 +114,7 @@ export const SCHEDULE: ScheduleEvent[] = [
   },
   {
     id: "talent-show",
-    day: "2026-07-16",
+    day: "2026-07-30",
     start: "19:00",
     title: "Family talent show",
     location: "Lodge great room",
@@ -124,7 +124,7 @@ export const SCHEDULE: ScheduleEvent[] = [
   },
   {
     id: "group-photo",
-    day: "2026-07-17",
+    day: "2026-07-31",
     start: "11:00",
     title: "Big group photo",
     location: "Lodge front steps",
@@ -133,21 +133,12 @@ export const SCHEDULE: ScheduleEvent[] = [
   },
   {
     id: "fireworks",
-    day: "2026-07-17",
+    day: "2026-07-31",
     start: "21:30",
     title: "Fireworks over the lake",
     location: "Lakeside lawn",
     emoji: "🎆",
     description: "The grand finale. Blankets out, lights down, look up.",
-  },
-  {
-    id: "farewell-breakfast",
-    day: "2026-07-18",
-    start: "08:00",
-    title: "Farewell breakfast & checkout",
-    location: "Lodge deck",
-    emoji: "👋",
-    description: "One more coffee together before the road. Checkout by 11.",
   },
 ];
 
@@ -187,13 +178,11 @@ export const MEMORIES: Memory[] = [
  * placeholders — swap in the real ones.
  */
 export const DINNERS: Dinner[] = [
-  { id: "d-sat", day: "2026-07-11", title: "Welcome cookout", emoji: "🌭", chef: { name: "Uncle Rob", phone: "+17155550111" } },
-  { id: "d-sun", day: "2026-07-12", title: "Pizza on the dock", emoji: "🍕", chef: { name: "Jake & Maria", phone: "+17155550112" } },
-  { id: "d-mon", day: "2026-07-13", title: "Fish fry", emoji: "🐟", chef: { name: "Grandpa", phone: "+17155550113" } },
-  { id: "d-tue", day: "2026-07-14", title: "Taco night", emoji: "🌮", chef: { name: "Aunt Linda", phone: "+17155550114" } },
-  { id: "d-wed", day: "2026-07-15", title: "Cousins' cookout (potluck)", emoji: "🍔", chef: { name: "The Petersons", phone: "+17155550115" } },
-  { id: "d-thu", day: "2026-07-16", title: "Spaghetti & talent show", emoji: "🍝", chef: { name: "Cousin Sam", phone: "+17155550116" } },
-  { id: "d-fri", day: "2026-07-17", title: "Big farewell BBQ", emoji: "🍖", chef: { name: "Uncle Rob", phone: "+17155550111" } },
+  { id: "d-mon", day: "2026-07-27", title: "Welcome cookout", emoji: "🌭", chef: { name: "Uncle Rob", phone: "+17155550111" } },
+  { id: "d-tue", day: "2026-07-28", title: "Pizza on the dock", emoji: "🍕", chef: { name: "Jake & Maria", phone: "+17155550112" } },
+  { id: "d-wed", day: "2026-07-29", title: "Fish fry", emoji: "🐟", chef: { name: "Grandpa", phone: "+17155550113" } },
+  { id: "d-thu", day: "2026-07-30", title: "Cousins' cookout (potluck)", emoji: "🍔", chef: { name: "The Petersons", phone: "+17155550115" } },
+  { id: "d-fri", day: "2026-07-31", title: "Big farewell BBQ", emoji: "🍖", chef: { name: "Uncle Rob", phone: "+17155550111" } },
 ];
 
 /**
