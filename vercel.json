@@ -1,0 +1,9 @@
+{
+  "redirects": [
+    {
+      "source": "/:path*",
+      "destination": "https://mlr-app-omega.vercel.app/family-fest",
+      "permanent": false
+    }
+  ]
+}
