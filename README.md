@@ -1,12 +1,14 @@
 # Family Fest 🎉
 
-A mobile-first PWA for pulling off a family get-together — the schedule, who's
-coming, who's bringing what, and a shared photo album — installable to your
-phone's home screen.
+A mobile-first PWA for **Muskellunge Lake Resort Family Fest** — the one-week
+family gathering at the lake. The schedule, who's coming, who's bringing what,
+and a shared photo album — installable to your phone's home screen.
 
-> **Status:** fresh scaffold. The stack, navigation, theme, and PWA plumbing
-> are in place; the feature tabs (Schedule / Crew / Photos) are placeholders
-> waiting on the real product definition.
+> **Status:** v1. Home (live countdown + headcount), Schedule (full week
+> agenda), Crew (RSVP + potluck, add-your-own persisted locally), and Photos
+> (shared album with local add-photo) are wired up against seed data in
+> [`lib/data.ts`](lib/data.ts) — no backend yet. The year-round resort app
+> (`mlr-app`) embeds a Family Fest hub that links here.
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fbtheis15%2Ffamily-fest)
 

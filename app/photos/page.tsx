@@ -1,5 +1,6 @@
-import { ComingSoon } from "@/components/ComingSoon";
+import { PhotosView } from "@/components/PhotosView";
+import { MEMORIES } from "@/lib/data";
 
 export default function PhotosPage() {
-  return <ComingSoon emoji="📸" title="Photos" />;
+  return <PhotosView seed={MEMORIES} />;
 }

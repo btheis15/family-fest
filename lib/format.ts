@@ -21,6 +21,24 @@ export function formatCurrency(n: number): string {
   });
 }
 
+/** Long form, e.g. "Saturday, July 11". Accepts an ISO date string. */
+export function formatDateLong(input: string | number | Date): string {
+  const d = input instanceof Date ? input : new Date(`${input}T00:00:00`);
+  return d.toLocaleDateString(undefined, {
+    weekday: "long",
+    month: "long",
+    day: "numeric",
+  });
+}
+
+/** "18:00" → "6:00 PM". Accepts an "HH:MM" 24h string. */
+export function formatTime(hhmm: string): string {
+  const [h, m] = hhmm.split(":").map(Number);
+  const d = new Date();
+  d.setHours(h, m, 0, 0);
+  return d.toLocaleTimeString(undefined, { hour: "numeric", minute: "2-digit" });
+}
+
 /** "3 days", "1 day", "today" — relative day count from now. */
 export function daysUntil(input: string | number | Date): string {
   const target = input instanceof Date ? input : new Date(input);
