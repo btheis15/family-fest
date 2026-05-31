@@ -1,29 +1,34 @@
-# Family Fest 🎉
+# Family Fest 2026 🏰
 
 A mobile-first PWA for **Muskellunge Lake Resort Family Fest** — the one-week
-family gathering at the lake. The schedule, who's coming, who's bringing what,
-and a shared photo album — installable to your phone's home screen.
+family gathering at the lake. Schedule, who's coming, who's bringing what, a
+shared photo album, and Venmo/Zelle pay links — installable to your phone.
+**2026 theme: Renaissance / Fantasy** (parchment + heraldry + Roman-serif
+titles), light mode only. Official title coming soon.
 
-> **Status:** v1. Home (live countdown + headcount), Schedule (full week agenda
-> + dinner head chefs with tap-to-call/text), Crew (RSVP + potluck, add-your-own
-> persisted locally), Photos (shared album, local add-photo + share to
-> Instagram/Facebook), and Pay (Venmo/Zelle to the organizers) are wired up
-> against seed data in [`lib/data.ts`](lib/data.ts) — no backend yet. The whole
-> app is public to browse; a name + email is only requested when you act (RSVP,
-> add photos). The year-round resort app (`mlr-app`) embeds a Family Fest hub
-> that links here. See [CLAUDE.md](./CLAUDE.md) for the Drive / social / payment
-> integration seams.
+> **Live:** https://family-fest.vercel.app (Vercel) · https://btheis15.github.io/family-fest/ (Pages)
+>
+> **Status: read-only launch.** The browse experience is live (Home + countdown,
+> Schedule + dinner head-chefs with tap-to-call/text, Crew/RSVP list, Photos
+> gallery, Pay via Venmo/Zelle) against seed data in [`lib/data.ts`](lib/data.ts).
+> Interactive features (sign-in, RSVP, photo upload) are gated behind a "coming
+> soon" via the `READ_ONLY` flag in [`lib/features.ts`](lib/features.ts) until the
+> Supabase backend lands. A persistent **"← Resort home"** link returns to the MLR
+> app; MLR's Family Fest hub links here. See [CLAUDE.md](./CLAUDE.md) for the
+> Drive / social / payment seams.
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fbtheis15%2Ffamily-fest)
 
 ## Stack
 
 - **Next.js 16** (App Router) + **React 19** + **TypeScript**
-- **Tailwind v4** (theme tokens as CSS variables via `@theme` in
-  [`app/globals.css`](app/globals.css))
+- **Tailwind v4** — light-mode-only Renaissance/Fantasy theme tokens (parchment +
+  heraldic wine/azure) as CSS variables via `@theme` in
+  [`app/globals.css`](app/globals.css); Cinzel display serif via `next/font`
 - **Framer Motion** for interactions
 - **PWA** — standalone manifest, "Add to Home Screen" hint on iOS
-- **Vercel** — auto-deploy on push to `main`
+- **Hosting** — live on **Vercel** + **GitHub Pages** (Pages auto-deploys on
+  push to `main`; Vercel is currently manual via `vercel --prod`)
 
 ## Quick start
 

@@ -13,11 +13,19 @@ export default function HomePage() {
 
   return (
     <div className="space-y-6 pt-6">
-      <header className="space-y-2">
-        <div className="text-4xl">🎉</div>
-        <h1 className="text-2xl font-bold tracking-tight">{EVENT.shortName}</h1>
-        <p className="text-foreground/60">{EVENT.tagline}</p>
-        <p className="text-sm text-foreground/50">
+      <header className="space-y-3 text-center">
+        <div className="text-5xl">🏰</div>
+        <h1 className="text-3xl font-bold tracking-tight">
+          {EVENT.shortName} <span className="text-primary">2026</span>
+        </h1>
+        <div className="mx-auto inline-flex flex-col items-center gap-0.5 rounded-2xl border border-border bg-card px-4 py-2">
+          <span className="font-display text-sm font-semibold uppercase tracking-[0.15em] text-primary">
+            ⚜ {EVENT.theme} ⚜
+          </span>
+          <span className="text-[11px] text-foreground/50">{EVENT.themeNote}</span>
+        </div>
+        <p className="text-sm text-foreground/70">{EVENT.tagline}</p>
+        <p className="text-xs text-foreground/50">
           {EVENT.location} · {formatDateLong(EVENT.startDate)} –{" "}
           {formatDateLong(EVENT.endDate)}
         </p>

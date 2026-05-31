@@ -6,9 +6,14 @@ Entry point for Claude/AI sessions on this repo. Read this first.
 
 A **Next.js 16 + React 19 + Tailwind v4 PWA** for **Muskellunge Lake Resort
 Family Fest** — the one-week-a-year family gathering at the lake. Mobile-first,
-vertical, warm/festive light theme. Same conventions as the author's other apps
-(`stock-game`, `innjoy-mobile`): App Router, CSS-variable theme tokens, bottom
-`TabBar`, iOS install hint, Vercel auto-deploy on push to `main`.
+vertical, **light mode only**, themed **Renaissance / Fantasy** (2026 theme from
+the poster; official title TBD): aged parchment, heraldic wine (`--color-primary`
+`#8b2e2e`) + azure (`--color-accent`), with a Roman-inscription serif (Cinzel,
+via next/font) on titles (`h1` + `.font-display`). Same conventions as the
+author's other apps (`stock-game`, `innjoy-mobile`): App Router, CSS-variable
+theme tokens, bottom `TabBar`, iOS install hint. Live on **Vercel**
+(family-fest.vercel.app) + GitHub Pages; currently **read-only** (`lib/features.ts`
+`READ_ONLY` gates RSVP / photo upload behind a "coming soon").
 
 Family Fest is the deep, standalone experience for the event week. The
 year-round resort app (`mlr-app`) embeds a `/family-fest` hub that mirrors these
@@ -38,9 +43,16 @@ is the single source of truth for routes + labels + icons).
 ## Conventions
 
 - **Theme** — all colors are CSS variables in the `@theme` block of
-  [`app/globals.css`](app/globals.css). Tailwind v4 turns each `--color-*` into
-  `bg-*` / `text-*` / `ring-*` / `border-*` utilities. Never hard-code hex in
-  components; add or edit a token.
+  [`app/globals.css`](app/globals.css) (parchment + heraldic wine/azure). Tailwind
+  v4 turns each `--color-*` into `bg-*` / `text-*` / `ring-*` / `border-*`. Never
+  hard-code hex; add or edit a token. Titles use the Cinzel display serif
+  (`--font-display`, loaded in `layout.tsx`); apply with `h1` or `.font-display`.
+  - ⚠️ **LIGHT MODE ONLY — never add a dark theme.** And never use a dark
+    translucent surface tint (`bg-black/NN`, `bg-zinc-*/NN`) as a card/panel bg —
+    muddy grey on parchment (a recurring issue across the author's apps).
+    Translucent layers stack LIGHT; `bg-black/NN` is OK only as a modal scrim.
+- **Cross-nav** — the layout renders a persistent "← Resort home" link
+  (`EVENT.resortAppUrl`) back to the MLR umbrella app, plus the theme tag.
 - **Formatting** — dates/numbers/times go through
   [`lib/format.ts`](lib/format.ts) (`formatDateLong`, `formatTime`, `daysUntil`,
   …). Add new formatters there.

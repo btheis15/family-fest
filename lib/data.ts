@@ -11,7 +11,10 @@ import type { CrewMember, Dinner, Memory, Payee, ScheduleEvent } from "./types";
 export const EVENT = {
   name: "Muskellunge Lake Resort Family Fest",
   shortName: "Family Fest",
-  tagline: "One week. The whole family. The lake.",
+  tagline: "One week. The whole clan. The lake.",
+  /** 2026 theme (from the poster). The official title is still TBD. */
+  theme: "Renaissance · Fantasy",
+  themeNote: "Official title coming soon",
   /** Saturday → Saturday, one week. */
   startDate: "2026-07-11",
   endDate: "2026-07-18",
@@ -19,6 +22,8 @@ export const EVENT = {
   address: "N1234 Resort Rd, Northwoods, WI",
   /** Shared Facebook group — used as the fallback target for photo sharing. */
   facebookGroupUrl: "https://www.facebook.com/groups/your-family-fest-group",
+  /** Umbrella resort app (MLR) — the "back to the resort" cross-link target. */
+  resortAppUrl: "https://mlr-app-omega.vercel.app",
 } as const;
 
 /** The weekend agenda, in chronological order. */
