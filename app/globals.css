@@ -24,6 +24,17 @@
   --font-display: var(--font-cinzel), Georgia, "Iowan Old Style", "Times New Roman", serif;
 }
 
+/* iOS 26.1+ Home Screen apps report env(safe-area-inset-top) = 0 while the status
+   bar fade still covers the top ~24px (WebKit bug 301994). Floor it in standalone. */
+:root {
+  --safe-top: env(safe-area-inset-top);
+}
+@media (display-mode: standalone) {
+  :root {
+    --safe-top: max(env(safe-area-inset-top), 28px);
+  }
+}
+
 html,
 body {
   background: var(--color-background);

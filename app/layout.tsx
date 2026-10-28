@@ -56,7 +56,7 @@ export default async function RootLayout({
           <InstallHint />
           <main
             className="mx-auto w-full max-w-md px-4 pb-24 pt-2"
-            style={{ paddingTop: "env(safe-area-inset-top)" }}
+            style={{ paddingTop: "var(--safe-top)" }}
           >
             {/* Cross-nav: a breadcrumb back to the umbrella resort app that
                 names it explicitly — Family Fest reads as a section of the

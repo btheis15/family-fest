@@ -23,7 +23,7 @@ export function InstallHint() {
   if (!show) return null;
 
   return (
-    <div className="fixed inset-x-0 top-0 z-50 mx-auto max-w-md px-4 pt-[env(safe-area-inset-top)]">
+    <div className="fixed inset-x-0 top-0 z-50 mx-auto max-w-md px-4 pt-[var(--safe-top)]">
       <div className="mt-2 flex items-center gap-3 rounded-2xl bg-card px-4 py-3 text-sm shadow-lg ring-1 ring-border">
         <span className="text-base">📲</span>
         <p className="flex-1 text-foreground/80">
