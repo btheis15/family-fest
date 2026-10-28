@@ -52,11 +52,12 @@ export default async function RootLayout({
   return (
     <html lang="en" className={`h-full ${cinzel.variable}`}>
       <body className="min-h-full bg-background text-foreground antialiased">
+        <div className="top-band" aria-hidden />
         <IdentityProvider>
           <InstallHint />
           <main
             className="mx-auto w-full max-w-md px-4 pb-24 pt-2"
-            style={{ paddingTop: "env(safe-area-inset-top)" }}
+            style={{ paddingTop: "calc(var(--safe-top) + var(--band-h))" }}
           >
             {/* Cross-nav: a breadcrumb back to the umbrella resort app that
                 names it explicitly — Family Fest reads as a section of the

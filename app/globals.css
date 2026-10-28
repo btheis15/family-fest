@@ -24,6 +24,34 @@
   --font-display: var(--font-cinzel), Georgia, "Iowan Old Style", "Times New Roman", serif;
 }
 
+/* Single place to tune the top inset. The iOS 26 Home Screen "scroll edge" fade
+   dimming the top of the page is skipped when a fixed, full-width, solid opaque
+   box sits at the top edge, so .top-band (layout.tsx) is that box. Status bar
+   style is "default" (content starts below it), so the band shows only in
+   standalone and main gets matching top padding so it covers empty space. */
+:root {
+  --safe-top: env(safe-area-inset-top);
+  --band-h: 0px;
+}
+.top-band {
+  display: none;
+}
+@media (display-mode: standalone) {
+  :root {
+    --band-h: 12px;
+  }
+  .top-band {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: var(--band-h);
+    background-color: #f4ecd8; /* = --color-background, opaque */
+    z-index: 45; /* above page content, below InstallHint (z-50) */
+  }
+}
+
 html,
 body {
   background: var(--color-background);
